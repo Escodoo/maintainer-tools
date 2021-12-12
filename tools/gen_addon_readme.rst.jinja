@@ -87,6 +87,21 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 {%- endif %}
+{%- if org_name == 'Escodoo' %}
+
+This module is maintained by the Escodoo.
+
+.. |maintainer-{{ org_name }}| image:: https://github.com/{{ org_name }}.png?size=80px
+    :target: https://github.com/{{ org_name }}
+    :alt: {{ org_name}}
+
+|maintainer-{{ maintainer }}|
+
+We at Escodoo are exclusively dedicated to deploying the Odoo Platform and are
+focused on providing solutions that make our customers more competitive, lowering
+costs, making technology more accessible and ensuring it is used strategically to
+add even more value to the business.
+{%- endif %}
 
 {%- if manifest.maintainers %}
 {% for maintainer in manifest.maintainers %}
