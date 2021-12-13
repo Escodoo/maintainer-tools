@@ -5,7 +5,7 @@
 
 ## Installation
 
-    $ git clone git@github.com:OCA/maintainer-tools.git
+    $ git clone git@github.com:Escodoo/maintainer-tools.git
     $ cd maintainer-tools
     $ virtualenv env
     $ . env/bin/activate
@@ -13,7 +13,7 @@
 
 Alternatively if using pipx.
 
-    $ pipx install oca-maintainers-tools@git+https://github.com/OCA/maintainer-tools.git
+    $ pipx install oca-maintainers-tools@git+https://github.com/Escodoo/maintainer-tools.git
 
 ## OCA repositories tools
 
