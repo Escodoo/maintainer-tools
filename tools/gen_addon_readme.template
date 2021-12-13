@@ -92,7 +92,7 @@ This module is maintained by the Escodoo.
     :target: https://github.com/{{ org_name }}
     :alt: {{ org_name}}
 
-|maintainer-{{ maintainer }}|
+|maintainer-{{ org_name }}|
 
 We at Escodoo are exclusively dedicated to deploying the Odoo Platform and are
 focused on providing solutions that make our customers more competitive, lowering
