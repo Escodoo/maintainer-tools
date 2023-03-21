@@ -8,6 +8,8 @@ from __future__ import print_function
 from .github_login import login
 
 REPO_TO_IGNORE = [
+    ".github",
+    "mirrors-flake8",
 ]
 
 # List of labels to sync on all repositories
@@ -31,12 +33,12 @@ ALL_LABELS = {
     "no stale": (
         "524D44",
         "Use this label to prevent the automated stale action "
-        "from closing this PR/Issue."
+        "from closing this PR/Issue.",
     ),
     "stale": (
         "006B75",
-        "PR/Issue without recent activity, it'll be soon closed automatically."
-    )
+        "PR/Issue without recent activity, it'll be soon closed automatically.",
+    ),
 }
 
 
@@ -45,10 +47,7 @@ def main():
     for repo in gh.repositories_by("OCA"):
         if repo.name in REPO_TO_IGNORE:
             continue
-        repo_labels = {
-            label.name.lower(): label
-            for label in repo.labels()
-        }
+        repo_labels = {label.name.lower(): label for label in repo.labels()}
         target_labels = set(ALL_LABELS.keys())
         existing_labels = set(repo_labels.keys())
         labels_to_update = target_labels & existing_labels
@@ -64,9 +63,17 @@ def main():
             if (
                 repo_label.name != label_name
                 or repo_label.color != label_color
-                or repo_label.description != label_description
+                or (
+                    label_description is not None
+                    and repo_label.description != label_description
+                )
             ):
-                print(f"Updating label '{label_name}' in {repo.name}")
+                print(
+                    f"Updating label '{repo_label.name}' -> '{label_name}', "
+                    f"'{repo_label.color}' -> '{label_color}', "
+                    f"'{repo_label.description}' -> '{label_description}' "
+                    f"in {repo.name}"
+                )
                 repo_label.update(label_name, label_color, label_description)
         # Create labels
         for label_name in labels_to_create:
@@ -75,5 +82,5 @@ def main():
             repo.create_label(label_name, label_color, label_description)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
